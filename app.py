@@ -46,29 +46,63 @@ else:
                 # if they entered correct credentials
                 print('Good to go...')
                 logged_in = True
-                temp_userdata = res
+                current_balance = res['user']['balance']['KSH']
                 break
     else:
         print('Good to go...')
         logged_in = True
+        current_balance = result['user']['balance']['KSH']
 
-        print(result)
-        print(result['user']['balance']['KSH'])
-        # current_balance = result['user']
+
+
+# check balance
+def check_balance():
+    print(f'Your current balance is {current_balance}')
 
 
 # withdraw money
-# print(logged_in)
-# print(current_logged_in_user)
+def withdraw_money(amount, balance):
+    remainder = balance - amount
+    if remainder < 0:
+        print ('You do have sufficient balance to continue with this transaction')
+        return balance
+    else:
+        print(f'Successfully withdrawn {amount}')
+    return remainder
 
 
 
+print('Enter W to Withdraw and C to Check Balance')
+withdraw_or_check_balance = input('Do you want to withdraw some money or check your balance? (W/C) >>> ')
+
+if withdraw_or_check_balance.upper() == 'W':
+    # withdraw some money
+    how_much = int(input('How much? >>> '))
+    rem = withdraw_money(how_much, current_balance)
+    current_balance = rem
+    print(f'Your remaining balance is {current_balance}')
+
+elif withdraw_or_check_balance.upper() == 'C':
+    # show them the balance
+    check_balance()
+    response = input('Do you want to withdraw some money? (Y/N) >>> ')
+    if response.upper() == 'Y':
+        # withdraw some money
+        how_much = int(input('How much? >>> '))
+        rem = withdraw_money(how_much, current_balance)
+        current_balance = rem
+        print(f'Your remaining balance is {current_balance}')
+
+    elif response.upper() == 'N':
+        print('Thank you for banking wwith us. Have a good Day')
+    else:
+        print('Invalid input')
+else:
+    # Invalid input
+    print('Invalid input')
 
 
+# update the bank balance
 
-
-
-# # update the bank balance
-
-# # print a receipt
+# print a receipt
 
