@@ -1,7 +1,7 @@
 from utilities import collect_user_input, login_user
 
 logged_in = False
-temp_userdata = None
+current_balance = None
 
 # welcome statement
 print('Welcome to Lambda Investment Bank')
@@ -51,10 +51,22 @@ else:
     else:
         print('Good to go...')
         logged_in = True
-        temp_userdata = result
+
+        print(result)
+        print(result['user']['balance']['KSH'])
+        # current_balance = result['user']
 
 
-# # withdraw money
+# withdraw money
+# print(logged_in)
+# print(current_logged_in_user)
+
+
+
+
+
+
+
 
 # # update the bank balance
 
