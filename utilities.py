@@ -22,7 +22,7 @@ def collect_user_input():
             return user_input
 
     print('User not found...')
-    return user_input
+    return None
 
 
 # check if the username and pin are correct according to our database
@@ -33,18 +33,19 @@ def login_user(username, pin):
     and wrong_pin set to True
     """
 
-    res = {
-        'user': None,
-        'wrong_pin': False
+    user = {
+        'details': None,
+        'error': None
     }
 
     for user in users_data:
         if user['username'] == username:
             # login check password
             if pin == user['pin']:
-                res['user'] = user
+                user['details'] = user
+                return user
             else:
-                res['wrong_pin'] = True
-            break
-
-    return res
+                user['error'] = 'Wrong password!'
+                return user
+    
+    return None
