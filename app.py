@@ -1,7 +1,6 @@
 from utilities import collect_user_input, login_user
 import pprint
 
-
 logged_in = False
 logged_in_user_details = None
 times_withdrawn = 0
@@ -101,6 +100,8 @@ else:
             withdraw_again = False
         else:
             withdraw_again = False
+            # TODO: Handle It in another Way
+
 
         if times_withdrawn < 2 and withdraw_again == True:
             how_much = int(input('How much more? >>> '))
@@ -116,12 +117,29 @@ else:
             # withdraw some money
             how_much = int(input('How much? >>> '))
             withdraw_money(how_much, logged_in_user_details['balance'])
+            times_withdrawn += 1
+
+            x = input('Withdraw again? (Y/N) >>> ')
+                
+            if (x.upper() == 'Y'):
+                withdraw_again = True
+            elif (x.upper() == 'N'):
+                withdraw_again = False
+            else:
+                withdraw_again = False
+                # TODO: Handle It in another Way
+
+            if times_withdrawn < 2 and withdraw_again == True:
+                how_much = int(input('How much more? >>> '))
+                withdraw_money(how_much, logged_in_user_details['balance'])
         elif response.upper() == 'N':
             print('Thank you for banking with us. Have a good Day 😊')
         else:
             print('Invalid input')
     else:
         # Invalid input
+        # TODO: Handle It in another Way
+
         print('Invalid input')
 
 
