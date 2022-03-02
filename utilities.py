@@ -1,5 +1,7 @@
 
+from pprint import pprint
 from users import users_data
+from pprint import pprint
 
 # collect the username, pin
 def collect_user_input():
@@ -33,7 +35,7 @@ def login_user(username, pin):
     and wrong_pin set to True
     """
 
-    user = {
+    temp = {
         'details': None,
         'error': None
     }
@@ -42,10 +44,13 @@ def login_user(username, pin):
         if user['username'] == username:
             # login check password
             if pin == user['pin']:
-                user['details'] = user
-                return user
+                temp['details'] = {
+                    'username': user['username'],
+                    'balance': user['balance']
+                }
+                return temp
             else:
-                user['error'] = 'Wrong password!'
-                return user
-    
+                temp['error'] = 'Wrong password!'
+                return temp
+
     return None
