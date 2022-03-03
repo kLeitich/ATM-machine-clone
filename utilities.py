@@ -1,4 +1,4 @@
-
+from getpass import getpass
 from pprint import pprint
 from users import users_data
 from pprint import pprint
@@ -17,7 +17,7 @@ def collect_user_input():
 
         if cleaned_username == user['username']:
             print(f'Welcome back {cleaned_username}!')
-            pin = input('Enter your pin: ')
+            pin = getpass('Enter your pin: ')
             
             user_input['username'] = cleaned_username
             user_input['pin'] = pin
@@ -54,3 +54,7 @@ def login_user(username, pin):
                 return temp
 
     return None
+
+#RECEIPT FUNCTION
+
+
